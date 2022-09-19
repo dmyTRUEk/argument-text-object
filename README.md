@@ -13,15 +13,15 @@ because it recognizes the inclusion relationship of parentheses.
 
 
 ## Examples
-Here `|` denotes cursor position.
+Here `I` denotes cursor position.
 
 | Explanation           | Text before      | Input                                  | Text after        |
 |-----------------------|------------------|----------------------------------------|-------------------|
-| Delete an argument    | `foo(ba|r, baz)` | press `daa`                            | `foo(|baz)`       |
-| Delete in argument    | `foo(ba|r, baz)` | press `dia`                            | `foo(|, baz)`     |
-| Change in argument    | `foo(ba|r, baz)` | press `cia`, type `abc`, press `<esc>` | `foo(abc|, baz)`  |
-| Select in argument    | `foo(ba|r, baz)` | press `via`                            | `foo(|bar|, baz)` |
-| Jump to next argument | `foo(ba|r, baz)` | press `]a`                             | `foo(bar, |baz)`  |
+| Delete an argument    | `foo(baIr, baz)` | press `daa`                            | `foo(Ibaz)`       |
+| Delete in argument    | `foo(baIr, baz)` | press `dia`                            | `foo(I, baz)`     |
+| Change in argument    | `foo(baIr, baz)` | press `cia`, type `abc`, press `<esc>` | `foo(abcI, baz)`  |
+| Select in argument    | `foo(baIr, baz)` | press `via`                            | `foo(IbarI, baz)` |
+| Jump to next argument | `foo(baIr, baz)` | press `]a`                             | `foo(bar, Ibaz)`  |
 
 
 ## Ideas
