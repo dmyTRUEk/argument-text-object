@@ -1,14 +1,14 @@
 # Argument Text Object
-Arguments is also text-objects now!
+Vim plugin for working with function arguments.
 
-This plugin provides a text-object `a`(argument).
+This plugin (kinda) provides a text-object `a`(argument).
 - `via`, `vaa` - select in/an arg
 - `dia`, `daa` - delete in/an arg
 - `cia`, `caa` - change in/an arg
 - `yia`, `yaa` - yield (copy) in/an arg
 - `]a`, `[a` - jump to next/prev arg
 
-What this plugin does is more than simply typing `F,dt,`,
+This plugin does more than simply `f,dT,`,
 because it recognizes the inclusion relationship of parentheses.
 
 
@@ -22,6 +22,10 @@ Here `|` denotes cursor position.
 | Change in argument    | `foo(ba\|r, baz)` | press `cia`, type `abc`, press `<esc>` | `foo(abc\|, baz)`   |
 | Select in argument    | `foo(ba\|r, baz)` | press `via`                            | `foo(\|bar\|, baz)` |
 | Jump to next argument | `foo(ba\|r, baz)` | press `]a`                             | `foo(bar, \|baz)`   |
+
+
+## Todo
+- make `ia`, `aa` really text-object
 
 
 ## Ideas
