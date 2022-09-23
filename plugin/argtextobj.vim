@@ -10,7 +10,7 @@ endif
 
 
 " TODO: bind plugin's functions to better(?) names:
-" TODO: what <C-U> does exactly and is it necessary here?
+" TODO: what <C-U> exactly does and is it necessary here?
 xnoremap <Plug>(argtextobj_x_aa)  :<C-U>call argtextobj#VisualSelectAnArg()<CR>
 nnoremap <Plug>(argtextobj_n_daa) :<C-U>call argtextobj#DeleteAnArg()<CR>
 nnoremap <Plug>(argtextobj_n_caa) :<C-U>call argtextobj#ChangeAnArg()<CR>
