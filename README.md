@@ -24,6 +24,14 @@ Here `|` denotes cursor position.
 | Jump to next argument | `foo(ba\|r, baz)` | press `]a`                             | `foo(bar, \|baz)`   |
 
 
+## Installation
+Just enable it in your preferable plugin manager.
+Using [vim-plug](https://github.com/junegunn/vim-plug):
+```
+Plug 'dmytruek/argument-text-object'
+```
+
+
 ## Configuration
 ### Change or disable keybinds:
 If you don't like default keybinds, you can disable them:
