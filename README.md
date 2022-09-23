@@ -64,6 +64,7 @@ let g:argtextobj_search_limit = 1000
 
 
 ## Todo
+- add option to disable triangle brackets counting (bc they are used as greater/less symbol) (and other?)
 - make `ia`, `aa` really text-object
 - ? make better `[a`
 
