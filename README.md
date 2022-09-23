@@ -24,8 +24,34 @@ Here `|` denotes cursor position.
 | Jump to next argument | `foo(ba\|r, baz)` | press `]a`                             | `foo(bar, \|baz)`   |
 
 
+## Configuration
+### Change or disable keybinds:
+If you don't like default keybinds, you can disable them:
+```
+let g:argtextobj_disable_remaps = 1
+```
+
+And set your own
+(be sure not to map functions meant for visual mode to normal mode and vice versa):
+```
+xnoremap  aa <Plug>(argtextobj_x_aa)
+nnoremap daa <Plug>(argtextobj_n_daa)
+nnoremap caa <Plug>(argtextobj_n_caa)
+nnoremap yaa <Plug>(argtextobj_n_yaa)
+
+xnoremap  ia <Plug>(argtextobj_x_ia)
+nnoremap dia <Plug>(argtextobj_n_dia)
+nnoremap cia <Plug>(argtextobj_n_cia)
+nnoremap yia <Plug>(argtextobj_n_yia)
+
+nnoremap  [a <Plug>(argtextobj_n_pa)
+nnoremap  ]a <Plug>(argtextobj_n_na)
+```
+
+
 ## Todo
 - make `ia`, `aa` really text-object
+- ? make better `[a`
 
 
 ## Ideas

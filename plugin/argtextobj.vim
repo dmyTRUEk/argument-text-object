@@ -18,17 +18,19 @@ nnoremap <Plug>(argtextobj_n_yia) :<C-U>call argtextobj#YieldInArg()<CR>
 nnoremap <Plug>(argtextobj_n_na)  :<C-U>call argtextobj#NormalMoveToNextArg()<CR>
 nnoremap <Plug>(argtextobj_n_pa)  :<C-U>call argtextobj#NormalMoveToPrevArg()<CR>
 
-" keybinds:
-xnoremap  aa <Plug>(argtextobj_x_aa)
-nnoremap daa <Plug>(argtextobj_n_daa)
-nnoremap caa <Plug>(argtextobj_n_caa)
-nnoremap yaa <Plug>(argtextobj_n_yaa)
+if !exists('argtextobj_disable_remaps') || g:argtextobj_disable_remaps == 0
+    " keybinds:
+    xnoremap  aa <Plug>(argtextobj_x_aa)
+    nnoremap daa <Plug>(argtextobj_n_daa)
+    nnoremap caa <Plug>(argtextobj_n_caa)
+    nnoremap yaa <Plug>(argtextobj_n_yaa)
 
-xnoremap  ia <Plug>(argtextobj_x_ia)
-nnoremap dia <Plug>(argtextobj_n_dia)
-nnoremap cia <Plug>(argtextobj_n_cia)
-nnoremap yia <Plug>(argtextobj_n_yia)
+    xnoremap  ia <Plug>(argtextobj_x_ia)
+    nnoremap dia <Plug>(argtextobj_n_dia)
+    nnoremap cia <Plug>(argtextobj_n_cia)
+    nnoremap yia <Plug>(argtextobj_n_yia)
 
-nnoremap  [a <Plug>(argtextobj_n_pa)
-nnoremap  ]a <Plug>(argtextobj_n_na)
+    nnoremap  [a <Plug>(argtextobj_n_pa)
+    nnoremap  ]a <Plug>(argtextobj_n_na)
+endif
 
