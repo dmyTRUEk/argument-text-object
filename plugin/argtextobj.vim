@@ -4,7 +4,13 @@ if exists('argtextobj_loaded') || &cp || version < 700
 endif
 let argtextobj_loaded = 1
 
+if !exists('g:argtextobj_search_limit')
+    let g:argtextobj_search_limit = 1000
+endif
+
+
 " TODO: bind plugin's functions to better(?) names:
+" TODO: what <C-U> does exactly and is it necessary here?
 xnoremap <Plug>(argtextobj_x_aa)  :<C-U>call argtextobj#VisualSelectAnArg()<CR>
 nnoremap <Plug>(argtextobj_n_daa) :<C-U>call argtextobj#DeleteAnArg()<CR>
 nnoremap <Plug>(argtextobj_n_caa) :<C-U>call argtextobj#ChangeAnArg()<CR>
@@ -18,6 +24,7 @@ nnoremap <Plug>(argtextobj_n_yia) :<C-U>call argtextobj#YieldInArg()<CR>
 nnoremap <Plug>(argtextobj_n_na)  :<C-U>call argtextobj#NormalMoveToNextArg()<CR>
 nnoremap <Plug>(argtextobj_n_pa)  :<C-U>call argtextobj#NormalMoveToPrevArg()<CR>
 
+
 if !exists('g:argtextobj_disable_remaps') || g:argtextobj_disable_remaps == 0
     " keybinds:
     xnoremap  aa <Plug>(argtextobj_x_aa)
@@ -30,6 +37,7 @@ if !exists('g:argtextobj_disable_remaps') || g:argtextobj_disable_remaps == 0
     nnoremap cia <Plug>(argtextobj_n_cia)
     nnoremap yia <Plug>(argtextobj_n_yia)
 
+    " TODO: add <silent>
     nnoremap  [a <Plug>(argtextobj_n_pa)
     nnoremap  ]a <Plug>(argtextobj_n_na)
 endif

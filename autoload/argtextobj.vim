@@ -84,11 +84,9 @@ endfunction
 
 
 function! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
-    " TODO: make global for configurationability
-    let search_limit_max = 1000 " if checked more than this symbols, stop
     " init vars for loop:
     let linecol = a:linecol_initial_cursor_pos
-    let search_limit = search_limit_max
+    let search_limit = g:argtextobj_search_limit
     let level_bracket    = 0 " level for ( and )
     let level_bracket_sq = 0 " level for [ and ]
     let level_bracket_tr = 0 " level for < and >
@@ -132,11 +130,9 @@ endfunction
 
 
 function! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
-    " TODO: make global for configurationability
-    let search_limit_max = 1000 " if checked more than this symbols, stop
     " init vars for loop:
     let linecol = a:linecol_initial_cursor_pos
-    let search_limit = search_limit_max
+    let search_limit = g:argtextobj_search_limit
     let level_bracket    = 0 " level for ( and )
     let level_bracket_sq = 0 " level for [ and ]
     let level_bracket_tr = 0 " level for < and >
@@ -182,9 +178,6 @@ endfunction
 " AnArg aka AroundArg
 function! s:GetBoundsForAnArg()
     let l:pos = getcurpos() " current cursor position
-
-    " TODO: make global for configurationability
-    let search_limit_max = 1000 " if checked more than this symbols, stop
 
     " current cursor position
     let l:linecol = s:GetCurrentLineAndCol()
@@ -326,9 +319,6 @@ endfunction
 function! s:GetBoundsForInArg()
     let l:pos = getcurpos() " current cursor position
 
-    " TODO: make global for configurationability
-    let search_limit_max = 1000 " if checked more than this symbols, stop
-
     " current cursor position
     let l:linecol = s:GetCurrentLineAndCol()
     let l:char = s:GetChar(l:linecol)
@@ -405,9 +395,6 @@ endfunction
 function! argtextobj#NormalMoveToNextArg()
     let l:pos = getcurpos() " current cursor position
 
-    " TODO: make global for configurationability
-    let search_limit_max = 1000 " if checked more than this symbols, stop
-
     " current cursor position
     let linecol = s:GetCurrentLineAndCol()
     let l:char = s:GetChar(linecol)
@@ -447,9 +434,6 @@ endfunction
 
 function! argtextobj#NormalMoveToPrevArg()
     let l:pos = getcurpos() " current cursor position
-
-    " TODO: make global for configurationability
-    let search_limit_max = 1000 " if checked more than this symbols, stop
 
     " current cursor position
     let linecol = s:GetCurrentLineAndCol()

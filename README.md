@@ -48,6 +48,12 @@ nnoremap  [a <Plug>(argtextobj_n_pa)
 nnoremap  ]a <Plug>(argtextobj_n_na)
 ```
 
+### Search limit:
+Change search limit:
+```
+let g:argtextobj_search_limit = 1000
+```
+
 
 ## Todo
 - make `ia`, `aa` really text-object
