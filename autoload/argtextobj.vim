@@ -1,46 +1,46 @@
 " main plugin's code:
 
-function! s:GetCurrentLineAndCol()
+func! s:GetCurrentLineAndCol()
     let l:pos = getcurpos() " current cursor position info
     let l:line = l:pos[1]
     let l:col  = l:pos[2]
     return [l:line, l:col]
-endfunction
+endf
 
-function! s:GetChar(linecol)
+func! s:GetChar(linecol)
     let l:line = a:linecol[0]
     let l:col  = a:linecol[1]
     return getline(l:line)[l:col - 1]
-endfunction
+endf
 
 
-function! s:IsItemInList(item_to_search, list_)
+func! s:IsItemInList(item_to_search, list_)
     for item in a:list_
         if item == a:item_to_search
             return v:true
         endif
     endfor
     return v:false
-endfunction
+endf
 
-function! s:IsWhitespace(char)
+func! s:IsWhitespace(char)
     return s:IsItemInList(a:char, [" ", "\t"])
-endfunction
+endf
 
-function! s:IsBracketLeft(char)
+func! s:IsBracketLeft(char)
     return s:IsItemInList(a:char, ["(", "[", "<"])
-endfunction
+endf
 
-function! s:IsBracketRight(char)
+func! s:IsBracketRight(char)
     return s:IsItemInList(a:char, [")", "]", ">"])
-endfunction
+endf
 
-function! s:IsBracket(char)
+func! s:IsBracket(char)
     return s:IsBracketLeft(a:char) || s:IsBracketRight(a:char)
-endfunction
+endf
 
 
-function! s:ConvertBracketToLeft(char)
+func! s:ConvertBracketToLeft(char)
     if a:char ==# ")"
         return "("
     elseif a:char ==# "]"
@@ -50,10 +50,10 @@ function! s:ConvertBracketToLeft(char)
     else
         return char
     endif
-endfunction
+endf
 
 
-function! s:CurPosNext(linecol)
+func! s:CurPosNext(linecol)
     let [line_, col_] = a:linecol
     let col_ += 1
     if col_ > len(getline(line_))
@@ -66,9 +66,9 @@ function! s:CurPosNext(linecol)
         let col_ = 0
     endif
     return [line_, col_]
-endfunction
+endf
 
-function! s:CurPosPrev(linecol)
+func! s:CurPosPrev(linecol)
     let [line_, col_] = a:linecol
     let col_ -= 1
     if col_ < 1
@@ -80,10 +80,10 @@ function! s:CurPosPrev(linecol)
         let col_ = len(getline(line_))
     endif
     return [line_, col_]
-endfunction
+endf
 
 
-function! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
+func! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
     " init vars for loop:
     let linecol = a:linecol_initial_cursor_pos
     let search_limit = g:argtextobj_search_limit
@@ -126,10 +126,10 @@ function! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
     endif
 
     return linecol
-endfunction
+endf
 
 
-function! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
+func! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
     " init vars for loop:
     let linecol = a:linecol_initial_cursor_pos
     let search_limit = g:argtextobj_search_limit
@@ -172,11 +172,11 @@ function! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
     endif
 
     return linecol
-endfunction
+endf
 
 
 " AnArg aka AroundArg
-function! s:GetBoundsForAnArg()
+func! s:GetBoundsForAnArg()
     let l:pos = getcurpos() " current cursor position
 
     " current cursor position
@@ -279,10 +279,10 @@ function! s:GetBoundsForAnArg()
     let l:pos_right = [l:pos[0], linecol_right[0], linecol_right[1], l:pos[3]]
 
     return [l:pos_left, l:pos_right]
-endfunction
+endf
 
 
-function! argtextobj#VisualSelectAnArg()
+func! argtextobj#VisualSelectAnArg()
     let [l:pos_left, l:pos_right] = s:GetBoundsForAnArg()
     if (l:pos_left == []) || (l:pos_right == [])
         return 1
@@ -291,32 +291,32 @@ function! argtextobj#VisualSelectAnArg()
     exe 'normal! v'
     call setpos(".", l:pos_right)
     return 0
-endfunction
+endf
 
-function! argtextobj#DeleteAnArg()
+func! argtextobj#DeleteAnArg()
     call argtextobj#VisualSelectAnArg()
     exe 'normal! d'
-endfunction
+endf
 
-function! argtextobj#ChangeAnArg()
+func! argtextobj#ChangeAnArg()
     let l:result = argtextobj#VisualSelectAnArg()
     if l:result == 1
         return
     endif
     call feedkeys('c')
-endfunction
+endf
 
-function! argtextobj#YieldAnArg()
+func! argtextobj#YieldAnArg()
     let l:result = argtextobj#VisualSelectAnArg()
     if l:result == 1
         return
     endif
     exe 'normal! y'
-endfunction
+endf
 
 
 
-function! s:GetBoundsForInArg()
+func! s:GetBoundsForInArg()
     let l:pos = getcurpos() " current cursor position
 
     " current cursor position
@@ -355,10 +355,10 @@ function! s:GetBoundsForInArg()
     let l:pos_right = [l:pos[0], linecol_right[0], linecol_right[1], l:pos[3]]
 
     return [l:pos_left, l:pos_right]
-endfunction
+endf
 
 
-function! argtextobj#VisualSelectInArg()
+func! argtextobj#VisualSelectInArg()
     let [l:pos_left, l:pos_right] = s:GetBoundsForInArg()
     if (l:pos_left == []) || (l:pos_right == [])
         return 1
@@ -367,32 +367,32 @@ function! argtextobj#VisualSelectInArg()
     exe 'normal! v'
     call setpos(".", l:pos_right)
     return 0
-endfunction
+endf
 
-function! argtextobj#DeleteInArg()
+func! argtextobj#DeleteInArg()
     call argtextobj#VisualSelectInArg()
     exe 'normal! d'
-endfunction
+endf
 
-function! argtextobj#ChangeInArg()
+func! argtextobj#ChangeInArg()
     let l:result = argtextobj#VisualSelectInArg()
     if l:result == 1
         return
     endif
     call feedkeys('c')
-endfunction
+endf
 
-function! argtextobj#YieldInArg()
+func! argtextobj#YieldInArg()
     let l:result = argtextobj#VisualSelectInArg()
     if l:result == 1
         return
     endif
     exe 'normal! y'
-endfunction
+endf
 
 
 
-function! argtextobj#NormalMoveToNextArg()
+func! argtextobj#NormalMoveToNextArg()
     let l:pos = getcurpos() " current cursor position
 
     " current cursor position
@@ -429,10 +429,10 @@ function! argtextobj#NormalMoveToNextArg()
     let l:pos_right = [l:pos[0], linecol_right[0], linecol_right[1], l:pos[3]]
 
     call setpos('.', l:pos_right)
-endfunction
+endf
 
 
-function! argtextobj#NormalMoveToPrevArg()
+func! argtextobj#NormalMoveToPrevArg()
     let l:pos = getcurpos() " current cursor position
 
     " current cursor position
@@ -466,6 +466,5 @@ function! argtextobj#NormalMoveToPrevArg()
     let l:pos_left = [l:pos[0], linecol_left[0], linecol_left[1], l:pos[3]]
 
     call setpos('.', l:pos_left)
-endfunction
-
+endf
 
