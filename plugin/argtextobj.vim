@@ -1,8 +1,8 @@
 " check vim version and some other magick:
-if exists('loaded_argument_text_object') || &cp || version < 700
+if exists('argtextobj_loaded') || &cp || version < 700
     finish
 endif
-let loaded_argument_text_object = 1
+let argtextobj_loaded = 1
 
 " TODO: bind plugin's functions to better(?) names:
 xnoremap <Plug>(argtextobj_x_aa)  :<C-U>call argtextobj#VisualSelectAnArg()<CR>
@@ -18,7 +18,7 @@ nnoremap <Plug>(argtextobj_n_yia) :<C-U>call argtextobj#YieldInArg()<CR>
 nnoremap <Plug>(argtextobj_n_na)  :<C-U>call argtextobj#NormalMoveToNextArg()<CR>
 nnoremap <Plug>(argtextobj_n_pa)  :<C-U>call argtextobj#NormalMoveToPrevArg()<CR>
 
-if !exists('argtextobj_disable_remaps') || g:argtextobj_disable_remaps == 0
+if !exists('g:argtextobj_disable_remaps') || g:argtextobj_disable_remaps == 0
     " keybinds:
     xnoremap  aa <Plug>(argtextobj_x_aa)
     nnoremap daa <Plug>(argtextobj_n_daa)
