@@ -68,6 +68,7 @@ let g:argtextobj_search_limit = 1000
 - make `ia`, `aa` really text-object
 - ? make better `[a`
 
+If you have some other suggestions, feel free to [open issue](https://github.com/dmyTRUEk/argument-text-object/issues/new).
 
 ## Ideas
 - shift args (`<a` - move current arg to left, `>a` - move current arg to right)
