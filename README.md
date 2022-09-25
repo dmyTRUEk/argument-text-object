@@ -66,6 +66,7 @@ let g:argtextobj_search_limit = 1000
 ## Todo
 - add option to disable triangle brackets counting (bc they are used as greater/less symbol) (and other?)
 - make `ia`, `aa` really text-object
+- ? make it a bit smarter, so that when `<`,`>`,`<=`,`>=` is in arg (eg `func(arg1, x < y, arg2)`), it works as expected
 - ? make better `[a`
 
 If you have some other suggestions, feel free to [open issue](https://github.com/dmyTRUEk/argument-text-object/issues/new).
