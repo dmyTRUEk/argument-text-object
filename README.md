@@ -5,7 +5,7 @@ This plugin (kinda) provides a text-object `a`(argument).
 - `via`, `vaa` - select in/an arg
 - `dia`, `daa` - delete in/an arg
 - `cia`, `caa` - change in/an arg
-- `yia`, `yaa` - yield (copy) in/an arg
+- `yia`, `yaa` - yank (copy) in/an arg
 - `]a`, `[a` - jump to next/prev arg
 
 This plugin does more than simply `f,dT,`,
