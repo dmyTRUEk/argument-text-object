@@ -30,6 +30,10 @@ Using [vim-plug](https://github.com/junegunn/vim-plug):
 ```
 Plug 'dmytruek/argument-text-object'
 ```
+Using [packer](https://github.com/wbthomason/packer.nvim):
+```
+use 'dmytruek/argument-text-object'
+```
 
 
 ## Configuration
