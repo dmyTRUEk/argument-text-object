@@ -1,4 +1,4 @@
-" main plugin's code:
+" plugin's main code:
 
 func! s:GetCurrentLineAndCol()
     let l:pos = getcurpos() " current cursor position info
@@ -87,21 +87,23 @@ func! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
     " init vars for loop:
     let linecol = a:linecol_initial_cursor_pos
     let search_limit = g:argtextobj_search_limit
-    let level_bracket    = 0 " level for ( and )
+    let level_bracket_rd = 0 " level for ( and )
     let level_bracket_sq = 0 " level for [ and ]
     let level_bracket_tr = 0 " level for < and >
-    while (level_bracket != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# "(") && (s:GetChar(linecol) !=# "[") && (s:GetChar(linecol) !=# "<"))
+    while (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# "(") && (s:GetChar(linecol) !=# "[") && (s:GetChar(linecol) !=# "<"))
         let l:current_char = s:GetChar(linecol)
 
         " change level
         if l:current_char ==# "("
-            let level_bracket += 1
+            let level_bracket_rd += 1
         elseif l:current_char ==# ")"
-            let level_bracket -= 1
+            let level_bracket_rd -= 1
+
         elseif l:current_char ==# "["
             let level_bracket_sq += 1
         elseif l:current_char ==# "]"
             let level_bracket_sq -= 1
+
         elseif l:current_char ==# "<"
             let level_bracket_tr += 1
         elseif l:current_char ==# ">"
@@ -121,7 +123,7 @@ func! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
         endif
     endwhile
 
-    if (level_bracket != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0)
+    if (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0)
         return []
     endif
 
@@ -133,21 +135,23 @@ func! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
     " init vars for loop:
     let linecol = a:linecol_initial_cursor_pos
     let search_limit = g:argtextobj_search_limit
-    let level_bracket    = 0 " level for ( and )
+    let level_bracket_rd = 0 " level for ( and )
     let level_bracket_sq = 0 " level for [ and ]
     let level_bracket_tr = 0 " level for < and >
-    while (level_bracket != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# ")") && (s:GetChar(linecol) !=# "]") && (s:GetChar(linecol) !=# ">"))
+    while (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# ")") && (s:GetChar(linecol) !=# "]") && (s:GetChar(linecol) !=# ">"))
         let l:current_char = s:GetChar(linecol)
 
         " change level
         if l:current_char ==# "("
-            let level_bracket += 1
+            let level_bracket_rd += 1
         elseif l:current_char ==# ")"
-            let level_bracket -= 1
+            let level_bracket_rd -= 1
+
         elseif l:current_char ==# "["
             let level_bracket_sq += 1
         elseif l:current_char ==# "]"
             let level_bracket_sq -= 1
+
         elseif l:current_char ==# "<"
             let level_bracket_tr += 1
         elseif l:current_char ==# ">"
@@ -167,7 +171,7 @@ func! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
         endif
     endwhile
 
-    if (level_bracket != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0)
+    if (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0)
         return []
     endif
 
