@@ -68,12 +68,12 @@ let g:argtextobj_search_limit = 1000
 
 
 ## Todo
-- add option to disable triangle brackets counting (bc they are used as greater/less symbol) (and other?)
-- make `ia`, `aa` really text-object
-- ? make it a bit smarter, so that when `<`,`>`,`<=`,`>=` is in arg (eg `func(arg1, x < y, arg2)`), it works as expected
-- ? make better `[a`
+- add options to disable certain brackets , e.g. triangle brackets (bc they are used as greater/less symbol) (and other?)
+- make `[a` goto begin of prev arg, not end
+- make `ia`, `aa` really text-object, not just binds
+- ? make it a bit smarter, so that it works as expected even when any of `<`,`>`,`<=`,`>=` is in arg, e.g. `func(arg1, x < y, arg2)`
 
-If you have some other suggestions, feel free to [open issue](https://github.com/dmyTRUEk/argument-text-object/issues/new).
+If you have some other suggestions, feel free to [open an issue](https://github.com/dmyTRUEk/argument-text-object/issues/new).
 
 ## Ideas
 - shift args (`<a` - move current arg to left, `>a` - move current arg to right)
