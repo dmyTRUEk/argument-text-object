@@ -28,11 +28,11 @@ func! s:IsWhitespace(char)
 endf
 
 func! s:IsBracketLeft(char)
-    return s:IsItemInList(a:char, ["(", "[", "<"])
+    return s:IsItemInList(a:char, ["(", "[", "{", "<"])
 endf
 
 func! s:IsBracketRight(char)
-    return s:IsItemInList(a:char, [")", "]", ">"])
+    return s:IsItemInList(a:char, [")", "]", "}", ">"])
 endf
 
 func! s:IsBracket(char)
@@ -45,6 +45,8 @@ func! s:ConvertBracketToLeft(char)
         return "("
     elseif a:char ==# "]"
         return "["
+    elseif a:char ==# "}"
+        return "{"
     elseif a:char ==# ">"
         return "<"
     else
@@ -89,8 +91,9 @@ func! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
     let search_limit = g:argtextobj_search_limit
     let level_bracket_rd = 0 " level for ( and )
     let level_bracket_sq = 0 " level for [ and ]
+    let level_bracket_cu = 0 " level for { and }
     let level_bracket_tr = 0 " level for < and >
-    while (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# "(") && (s:GetChar(linecol) !=# "[") && (s:GetChar(linecol) !=# "<"))
+    while (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_cu != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# "(") && (s:GetChar(linecol) !=# "[") && (s:GetChar(linecol) !=# "{") && (s:GetChar(linecol) !=# "<") )
         let l:current_char = s:GetChar(linecol)
 
         " change level
@@ -103,6 +106,11 @@ func! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
             let level_bracket_sq += 1
         elseif l:current_char ==# "]"
             let level_bracket_sq -= 1
+
+        elseif l:current_char ==# "{"
+            let level_bracket_cu += 1
+        elseif l:current_char ==# "}"
+            let level_bracket_cu -= 1
 
         elseif l:current_char ==# "<"
             let level_bracket_tr += 1
@@ -123,7 +131,7 @@ func! s:FindFirstCorrectBracketOrCommaOnLeft(linecol_initial_cursor_pos)
         endif
     endwhile
 
-    if (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0)
+    if (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_cu != 0) || (level_bracket_tr != 0)
         return []
     endif
 
@@ -137,8 +145,9 @@ func! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
     let search_limit = g:argtextobj_search_limit
     let level_bracket_rd = 0 " level for ( and )
     let level_bracket_sq = 0 " level for [ and ]
+    let level_bracket_cu = 0 " level for { and }
     let level_bracket_tr = 0 " level for < and >
-    while (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# ")") && (s:GetChar(linecol) !=# "]") && (s:GetChar(linecol) !=# ">"))
+    while (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_cu != 0) || (level_bracket_tr != 0) || ( (s:GetChar(linecol) !=# ",") && (s:GetChar(linecol) !=# ")") && (s:GetChar(linecol) !=# "]") && (s:GetChar(linecol) !=# "}") && (s:GetChar(linecol) !=# ">") )
         let l:current_char = s:GetChar(linecol)
 
         " change level
@@ -151,6 +160,11 @@ func! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
             let level_bracket_sq += 1
         elseif l:current_char ==# "]"
             let level_bracket_sq -= 1
+
+        elseif l:current_char ==# "{"
+            let level_bracket_cu += 1
+        elseif l:current_char ==# "}"
+            let level_bracket_cu -= 1
 
         elseif l:current_char ==# "<"
             let level_bracket_tr += 1
@@ -171,7 +185,7 @@ func! s:FindFirstCorrectBracketOrCommaOnRight(linecol_initial_cursor_pos)
         endif
     endwhile
 
-    if (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_tr != 0)
+    if (level_bracket_rd != 0) || (level_bracket_sq != 0) || (level_bracket_cu != 0) || (level_bracket_tr != 0)
         return []
     endif
 
@@ -213,7 +227,7 @@ func! s:GetBoundsForAnArg()
             endwhile
             let linecol_right = s:CurPosPrev(linecol_right)
         endif
-        if ((linecol_left[1] != 0) || (linecol_right[1] != len(getline(linecol_right[0])))) && s:IsWhitespace(s:GetChar(linecol_left))
+        if ( (linecol_left[1] != 0) || (linecol_right[1] != len(getline(linecol_right[0]))) ) && s:IsWhitespace(s:GetChar(linecol_left))
             while s:IsWhitespace(s:GetChar(linecol_left))
                 let linecol_left = s:CurPosNext(linecol_left)
             endwhile
