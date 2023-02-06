@@ -11,6 +11,9 @@ This plugin (kinda) provides a text-object `a`(argument).
 This plugin does more than simply `f,dT,`,
 because it recognizes the inclusion relationship of parentheses.
 
+**⚠ WARNING ⚠:** this plugin is in experimental phase,
+so feature set and provided commands may vary a lot.
+
 
 ## Examples
 Here `|` denotes cursor position.
