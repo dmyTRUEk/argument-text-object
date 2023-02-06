@@ -48,18 +48,18 @@ let g:argtextobj_disable_remaps = 1
 And set your own
 (be sure not to map functions meant for visual mode to normal mode and vice versa):
 ```
-xnoremap  aa <Plug>(argtextobj_x_aa)
-nnoremap daa <Plug>(argtextobj_n_daa)
-nnoremap caa <Plug>(argtextobj_n_caa)
-nnoremap yaa <Plug>(argtextobj_n_yaa)
+xnoremap  aa :<C-U>ArgtextobjXaa<CR>
+nnoremap daa :<C-U>ArgtextobjNdaa<CR>
+nnoremap caa :<C-U>ArgtextobjNcaa<CR>
+nnoremap yaa :<C-U>ArgtextobjNyaa<CR>
 
-xnoremap  ia <Plug>(argtextobj_x_ia)
-nnoremap dia <Plug>(argtextobj_n_dia)
-nnoremap cia <Plug>(argtextobj_n_cia)
-nnoremap yia <Plug>(argtextobj_n_yia)
+xnoremap  ia :<C-U>ArgtextobjXia<CR>
+nnoremap dia :<C-U>ArgtextobjNdia<CR>
+nnoremap cia :<C-U>ArgtextobjNcia<CR>
+nnoremap yia :<C-U>ArgtextobjNyia<CR>
 
-nnoremap  [a <Plug>(argtextobj_n_pa)
-nnoremap  ]a <Plug>(argtextobj_n_na)
+nnoremap  [a :<C-U>ArgtextobjNpa<CR>
+nnoremap  ]a :<C-U>ArgtextobjNna<CR>
 ```
 
 ### Search limit:
@@ -71,6 +71,9 @@ let g:argtextobj_search_limit = 1000
 
 ## Todo
 - add options to disable certain brackets , e.g. triangle brackets (bc they are used as greater/less symbol) (and other?)
+- select even when cursor is on bracket character
+- select more if some selection already exists (`vaaaa` - select one more argument)
+- select even more if all inside parentheses already selected
 - make `[a` goto begin of prev arg, not end
 - make `ia`, `aa` really text-object, not just binds
 - ? make it a bit smarter, so that it works as expected even when any of `<`,`>`,`<=`,`>=` is in arg, e.g. `func(arg1, x < y, arg2)`
